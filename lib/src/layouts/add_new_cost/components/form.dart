@@ -98,10 +98,7 @@ class _FormScreenState extends State<FormScreen> {
                   if (_formKey.currentState.validate()) {
                     // Process data.
                     _saveForm();
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
+                    Navigator.pop(context);
                   }
                 },
                 child: Text(
