@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+const kPrimaryColor = Color(0xFF5F8C8C);
+const kAccentColor = Color(0xFFCFCCA9);
+const kOptionalColor = Color(0xFFFCFCFC);
+const kTextColor = Color(0xFF262626);
+const kTextLightColor = Color(0xFFF1F1F1);
+const kOrangeColor = Color(0xFFDF8B00);
+const kRedColor = Color(0xFFFF3E20);
+const kGreenColor = Color(0xFF329B24);
+const kWhiteColor = Color(0xFFFFFFFF);
+const kBlackColor = Color(0xFF000000);
+const kAshColor = Color(0xFFB2BEB5);
+const kVioletColor = Color(0xFF4DA70D6);
+const kRedLightColor = Color(0xFFFF6961);
+const kGreenLightColor = Color(0xFF98FB98);
+const kLightBlueColor = Color(0xFF55676A);
+const KdefaultPaddin = 20.0;
+const KmodiPaddin = 10.0;
+const kHeadlineSize = 24.0;
+const kTitleSize = 16.0;
+const kTextSize = 12.0;
