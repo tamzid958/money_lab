@@ -2,16 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:money_lab/src/layouts/home/home.dart';
 
-class AddNewCost extends StatefulWidget {
-  AddNewCost({Key key}) : super(key: key);
+class FormScreen extends StatefulWidget {
+  FormScreen({Key key}) : super(key: key);
 
   @override
-  _AddNewCostState createState() => _AddNewCostState();
+  _FormScreenState createState() => _FormScreenState();
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _AddNewCostState extends State<AddNewCost> {
+class _FormScreenState extends State<FormScreen> {
   String _myActivity;
   final _formKey = GlobalKey<FormState>();
 
@@ -32,7 +33,7 @@ class _AddNewCostState extends State<AddNewCost> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(KdefaultPaddin),
+      padding: EdgeInsets.all(KdefaultPaddin / 2),
       child: Form(
         key: _formKey,
         child: Column(
@@ -97,6 +98,10 @@ class _AddNewCostState extends State<AddNewCost> {
                   if (_formKey.currentState.validate()) {
                     // Process data.
                     _saveForm();
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
                   }
                 },
                 child: Text(

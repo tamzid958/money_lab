@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/addNewCost.dart';
+import 'package:money_lab/src/layouts/add_new_cost/add_new_cost.dart';
 import 'components/body.dart';
 import 'components/myBottomNav.dart';
 
@@ -11,15 +11,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void _newCostAdd() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Column(
-          children: [
-            AddNewCost(),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddNewCost(),
+      ),
     );
   }
 

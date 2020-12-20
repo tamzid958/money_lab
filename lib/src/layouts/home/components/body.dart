@@ -16,23 +16,25 @@ class _BodyState extends State<Body> {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.all(KdefaultPaddin / 2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Stat",
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                MySwitch(),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            MyCostLists(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Stat",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  MySwitch(),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              MyCostLists(),
+            ],
+          ),
         ),
       ),
     );
