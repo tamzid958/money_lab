@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
     return Container(
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(KdefaultPaddin / 2),
+          padding: EdgeInsets.all(KdefaultPaddin),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +24,8 @@ class Body extends StatelessWidget {
                   children: [
                     Text("Stat",
                         style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold)),
+                            fontSize: kHeadlineSize,
+                            fontWeight: FontWeight.bold)),
                     MySwitch(auth: auth, onSignedOut: onSignedOut),
                   ],
                 ),
