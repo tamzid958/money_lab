@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "78372939322",
+    "project_id": "money-lab-2143c",
+    "storage_bucket": "money-lab-2143c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78372939322:android:bb71c1bc76aa6c32fb3703",
+        "android_client_info": {
+          "package_name": "com.xilo.money_lab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78372939322-tpqo42cdo63o9jj2btlh4bva08ageq3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVs3jQLAeXhblX05xJNRwkG6gXH1n5ATg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78372939322-tpqo42cdo63o9jj2btlh4bva08ageq3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
