@@ -48,12 +48,12 @@ class Body extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ClipOval(
-                          child: Image.network(
-                            "https://dummyimage.com/1200x800/000/fff.png",
-                            height: 150.0,
-                            width: 150.0,
+                        CircleAvatar(
+                          backgroundColor: kPrimaryColor,
+                          backgroundImage: AssetImage(
+                            "assets/images/user.png",
                           ),
+                          radius: 70.0,
                         ),
                         Text(
                           "User Name",

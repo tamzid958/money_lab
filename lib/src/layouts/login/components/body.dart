@@ -12,6 +12,17 @@ class LoginBodyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _signIn() async {
+      try {
+        await auth.googleSignIn();
+        onSignedIn();
+        Route route = MaterialPageRoute(builder: (context) => HomeScreen());
+        Navigator.pushReplacement(context, route);
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Container(
       padding: EdgeInsets.all(KdefaultPaddin * 3),
       color: kPrimaryColor,
@@ -25,12 +36,7 @@ class LoginBodyScreen extends StatelessWidget {
                     color: kOptionalColor, fontSize: kHeadlineSize * 1.3)),
             SignInButton(
               Buttons.Google,
-              onPressed: () async {
-                await authService.googleSignIn();
-                Route route =
-                    MaterialPageRoute(builder: (context) => HomeScreen());
-                Navigator.pushReplacement(context, route);
-              },
+              onPressed: () => _signIn(),
             ),
           ],
         ),
