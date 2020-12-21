@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 
 class BudgetPage extends StatelessWidget {
   final AuthService auth;

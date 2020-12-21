@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/home/home.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';

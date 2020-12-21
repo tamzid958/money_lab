@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 
 import 'components/body.dart';
 

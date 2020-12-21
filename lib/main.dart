@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/src/layouts/loading/loading.dart';
 import 'constants.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'root.dart';
+import 'src/auth/root.dart';
 
 var savedThemeMode;
 

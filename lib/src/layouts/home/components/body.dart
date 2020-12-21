@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 import 'myCostLists.dart';
 import 'myswitch.dart';

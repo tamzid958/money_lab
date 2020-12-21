@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/auth.dart';
+import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/add_new_cost/add_new_cost.dart';
 import 'package:money_lab/src/layouts/budget/budget.dart';
