@@ -52,7 +52,7 @@ class Body extends StatelessWidget {
                           child: Image.network(
                             "https://dummyimage.com/1200x800/000/fff.png",
                             height: 150.0,
-                            width: 100.0,
+                            width: 150.0,
                           ),
                         ),
                         Text(
@@ -97,7 +97,7 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: KmodiPaddin,
             ),
             Text(
               "Email",
@@ -107,7 +107,19 @@ class Body extends StatelessWidget {
               style: TextStyle(fontSize: kTitleSize),
             ),
             SizedBox(
-              height: 10,
+              height: KmodiPaddin,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: FlatButton.icon(
+                color: Theme.of(context).accentColor,
+                label: Text(
+                  "Download Backup",
+                  style: TextStyle(color: kBlackColor),
+                ),
+                icon: Icon(Icons.cloud_download, color: kBlackColor),
+                onPressed: () => null,
+              ),
             ),
             SizedBox(
               width: double.infinity,
