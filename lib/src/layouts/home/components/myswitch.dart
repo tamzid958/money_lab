@@ -1,25 +1,21 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 
 class MySwitch extends StatefulWidget {
-  final AuthService auth;
   final VoidCallback onSignedOut;
   const MySwitch({
     Key key,
-    this.auth,
     this.onSignedOut,
   }) : super(key: key);
 
   @override
-  _MySwitchState createState() => _MySwitchState(auth, onSignedOut);
+  _MySwitchState createState() => _MySwitchState(onSignedOut);
 }
 
 class _MySwitchState extends State<MySwitch> {
-  AuthService auth;
   VoidCallback onSignedOut;
-  _MySwitchState(this.auth, this.onSignedOut);
+  _MySwitchState(this.onSignedOut);
   bool _isSwitched = false;
   @override
   Widget build(BuildContext context) {

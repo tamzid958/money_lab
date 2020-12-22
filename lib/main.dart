@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/src/layouts/loading/loading.dart';
+import 'package:money_lab/src/services/provider.dart';
 import 'constants.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'src/auth/root.dart';
@@ -67,33 +68,36 @@ class AdaptiveApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-        light: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.grey,
-          primaryColor: kPrimaryColor,
-          accentColor: kAccentColor,
-          textTheme: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: kTextColor, fontFamily: "Boing"),
-        ),
-        dark: ThemeData(
-          brightness: Brightness.dark,
-          primarySwatch: Colors.grey,
-          primaryColor: kPrimaryColor,
-          accentColor: kOptionalColor,
-          textTheme: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: kTextLightColor, fontFamily: "Boing"),
-        ),
-        initial: savedThemeMode ?? AdaptiveThemeMode.light,
-        builder: (theme, darkTheme) => MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Money Lab',
-              theme: theme,
-              darkTheme: darkTheme,
-              home: RootPage(auth: AuthService()),
-            ) //home: HomeScreen(),
-        );
+    return AuthProvider(
+      auth: AuthService(),
+      child: AdaptiveTheme(
+          light: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: Colors.grey,
+            primaryColor: kPrimaryColor,
+            accentColor: kAccentColor,
+            textTheme: Theme.of(context)
+                .textTheme
+                .apply(bodyColor: kTextColor, fontFamily: "Boing"),
+          ),
+          dark: ThemeData(
+            brightness: Brightness.dark,
+            primarySwatch: Colors.grey,
+            primaryColor: kPrimaryColor,
+            accentColor: kOptionalColor,
+            textTheme: Theme.of(context)
+                .textTheme
+                .apply(bodyColor: kTextLightColor, fontFamily: "Boing"),
+          ),
+          initial: savedThemeMode ?? AdaptiveThemeMode.light,
+          builder: (theme, darkTheme) => MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Money Lab',
+                theme: theme,
+                darkTheme: darkTheme,
+                home: RootPage(),
+              ) //home: HomeScreen(),
+          ),
+    );
   }
 }

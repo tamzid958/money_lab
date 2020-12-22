@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 import 'myCostLists.dart';
 import 'myswitch.dart';
 
 class Body extends StatelessWidget {
-  final AuthService auth;
   final VoidCallback onSignedOut;
-  const Body({Key key, this.auth, this.onSignedOut}) : super(key: key);
+  const Body({Key key, this.onSignedOut}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class Body extends StatelessWidget {
                         style: TextStyle(
                             fontSize: kHeadlineSize,
                             fontWeight: FontWeight.bold)),
-                    MySwitch(auth: auth, onSignedOut: onSignedOut),
+                    MySwitch(onSignedOut: onSignedOut),
                   ],
                 ),
                 SizedBox(

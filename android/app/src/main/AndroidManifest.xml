@@ -2,7 +2,8 @@
     package="com.xilo.money_lab">
    <application
         android:label="Money Lab"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

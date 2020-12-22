@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/add_new_cost/add_new_cost.dart';
 import 'package:money_lab/src/layouts/budget/budget.dart';
@@ -8,9 +7,8 @@ import 'package:money_lab/src/layouts/reportPage/report.dart';
 import 'components/body.dart';
 
 class HomeScreen extends StatefulWidget {
-  final AuthService auth;
   final VoidCallback onSignedOut;
-  const HomeScreen({Key key, this.auth, this.onSignedOut}) : super(key: key);
+  const HomeScreen({Key key, this.onSignedOut}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -25,22 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       Body(
-        auth: widget.auth,
         onSignedOut: widget.onSignedOut,
       ),
       ReportPage(
-        auth: widget.auth,
         onSignedOut: widget.onSignedOut,
       ),
       BudgetPage(
-        auth: widget.auth,
         onSignedOut: widget.onSignedOut,
       ),
       ProfileScreen(
-        auth: widget.auth,
         onSignedOut: widget.onSignedOut,
       ),
     ];

@@ -56,6 +56,12 @@ class AuthService {
     return _auth.signOut();
   }
 
+  Future<List> getProfile() async {
+    User user = FirebaseAuth.instance.currentUser;
+    await user.reload();
+    return user.providerData;
+  }
+
   Future<String> currentUser() async {
     User user = FirebaseAuth.instance.currentUser;
     return user != null ? user.uid : null;
