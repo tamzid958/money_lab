@@ -15,6 +15,7 @@ class MyCostLists extends StatelessWidget {
         height: 500,
         child: ListView.separated(
           shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
           itemCount: costLists.length,
           separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (context, int index) => CostList(

@@ -12,9 +12,10 @@ class MyCostLists extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: 480,
+        height: 450,
         child: ListView.separated(
           shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
           itemCount: budgetLists.length,
           separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (context, int index) => PerMonthBudgetCard(
