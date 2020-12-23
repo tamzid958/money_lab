@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/services/themeChanger.dart';
-
 import 'form.dart';
 
 class Body extends StatefulWidget {
@@ -27,7 +25,6 @@ class _BodyState extends State<Body> {
                   "   Conservation",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                MySwitch(),
               ],
             ),
             SizedBox(
