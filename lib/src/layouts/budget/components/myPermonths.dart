@@ -12,7 +12,7 @@ class MyCostLists extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: 450,
+        height: MediaQuery.of(context).size.height / 1.5,
         child: ListView.separated(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
