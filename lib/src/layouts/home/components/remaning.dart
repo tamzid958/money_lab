@@ -17,8 +17,8 @@ class RemaningBudget extends StatelessWidget {
           children: [
             Image.asset(
               "assets/images/money-bag.png",
-              cacheHeight: 80,
-              cacheWidth: 80,
+              width: 80,
+              height: 80,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

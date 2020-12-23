@@ -74,6 +74,7 @@ class AdaptiveApp extends StatelessWidget {
           light: ThemeData(
             brightness: Brightness.light,
             primarySwatch: Colors.grey,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
             primaryColor: kPrimaryColor,
             accentColor: kAccentColor,
             textTheme: Theme.of(context)
@@ -83,6 +84,7 @@ class AdaptiveApp extends StatelessWidget {
           dark: ThemeData(
             brightness: Brightness.dark,
             primarySwatch: Colors.grey,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
             primaryColor: kPrimaryColor,
             accentColor: kOptionalColor,
             textTheme: Theme.of(context)

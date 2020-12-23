@@ -13,27 +13,28 @@ class MySwitch extends StatefulWidget {
 
 class _MySwitchState extends State<MySwitch> {
   bool _isSwitched = false;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Switch(
-          value: _isSwitched,
-          activeColor: kAshColor,
-          activeTrackColor: kWhiteColor,
-          onChanged: (value) {
-            setState(
-              () {
-                if (_isSwitched == false) {
-                  AdaptiveTheme.of(context).setDark();
-                } else {
-                  AdaptiveTheme.of(context).setLight();
-                }
-                _isSwitched = value;
-              },
-            );
-          },
-        ),
+            value: _isSwitched,
+            activeColor: kAshColor,
+            activeTrackColor: kWhiteColor,
+            onChanged: (valueofTheme) {
+              setState(
+                () {
+                  if (_isSwitched == false) {
+                    AdaptiveTheme.of(context).setDark();
+                  } else {
+                    AdaptiveTheme.of(context).setLight();
+                  }
+
+                  _isSwitched = valueofTheme;
+                },
+              );
+            }),
         IconButton(icon: Icon(Icons.search_rounded), onPressed: () => null),
       ],
     );

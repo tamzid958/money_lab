@@ -33,7 +33,8 @@ class _BodyState extends State<Body> {
     var currentMon = now.month;
     var currentBudget;
     for (var i = 0; i < totalLists.length; i++) {
-      if (totalLists[i].month == months[currentMon - 1]) {
+      if (totalLists[i].month == months[currentMon - 1] &&
+          totalLists[i].checked != true) {
         currentBudget = totalLists[i];
       }
     }
@@ -42,50 +43,56 @@ class _BodyState extends State<Body> {
       padding: const EdgeInsets.all(KdefaultPaddin),
       child: Column(
         children: [
-          Container(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: KmodiPaddin,
-                  ),
-                  Text("Target Budget"),
-                  Slider(
-                    value: _currentSliderValue,
-                    min: 0,
-                    activeColor: kAccentColor,
-                    inactiveColor: kPrimaryColor,
-                    max: currentBudget.total,
-                    divisions: 100,
-                    label: _currentSliderValue.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        _currentSliderValue = value;
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FlatButton(
-                      onPressed: () {
-                        // Validate returns true if the form is valid, or false
-                        // otherwise.
-                        if (_formKey.currentState.validate()) {
-                          // If the form is valid, display a Snackbar.
-                          Navigator.pop(context);
-                        }
-                      },
-                      color: Theme.of(context).accentColor,
-                      child:
-                          Text('Submit', style: TextStyle(color: kBlackColor)),
+          currentBudget != null
+              ? Container(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: KmodiPaddin,
+                        ),
+                        Text("Target Budget: " + currentBudget.month),
+                        Slider(
+                          value: _currentSliderValue,
+                          min: 0,
+                          activeColor: kAccentColor,
+                          inactiveColor: kPrimaryColor,
+                          max: currentBudget.total,
+                          divisions: 100,
+                          label: _currentSliderValue.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              _currentSliderValue = value;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FlatButton(
+                            onPressed: () {
+                              // Validate returns true if the form is valid, or false
+                              // otherwise.
+                              if (_formKey.currentState.validate()) {
+                                // If the form is valid, display a Snackbar.
+                                Navigator.pop(context);
+                              }
+                            },
+                            color: Theme.of(context).accentColor,
+                            child: Text('Submit',
+                                style: TextStyle(color: kBlackColor)),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                )
+              : Center(
+                  child: Text("Budget Already Set for " +
+                      months[currentMon - 1] +
+                      " month"),
+                ),
         ],
       ),
     );

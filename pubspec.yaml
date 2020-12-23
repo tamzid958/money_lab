@@ -45,6 +45,7 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   intl: ^0.16.1
   modal_bottom_sheet: ^1.0.0+1
+  shared_preferences: ^0.5.12+4
 dev_dependencies:
   flutter_launcher_icons: "^0.8.0"
   flutter_launcher_name: "^0.0.1"
