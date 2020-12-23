@@ -53,7 +53,9 @@ class _BodyState extends State<Body> {
                         SizedBox(
                           height: KmodiPaddin,
                         ),
-                        Text("Target Budget: " + currentBudget.month),
+                        Center(
+                            child:
+                                Text("Target Budget: " + currentBudget.month)),
                         Slider(
                           value: _currentSliderValue,
                           min: 0,
@@ -66,6 +68,22 @@ class _BodyState extends State<Body> {
                             setState(() {
                               _currentSliderValue = value;
                             });
+                          },
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Title',
+                            hintText: 'Title',
+                            prefix: Icon(
+                              Icons.title,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter valid text';
+                            }
+                            return null;
                           },
                         ),
                         SizedBox(

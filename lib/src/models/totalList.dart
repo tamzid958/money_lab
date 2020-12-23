@@ -1,5 +1,5 @@
 class TotalLists {
-  String month;
+  final String month;
   final int id;
   final double total;
   final bool checked;
@@ -22,6 +22,6 @@ List<TotalLists> totalLists = [
     month: "Dec",
     id: 2,
     total: 20000,
-    checked: true,
+    checked: false,
   ),
 ];
