@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/layouts/home/components/myswitch.dart';
+import 'package:money_lab/src/services/themeChanger.dart';
 
 import 'form.dart';
 

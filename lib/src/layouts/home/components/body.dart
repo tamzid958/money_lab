@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 import 'myCostLists.dart';
-import 'myswitch.dart';
+import '../../../services/themeChanger.dart';
+import 'remaning.dart';
 
 class Body extends StatelessWidget {
   final VoidCallback onSignedOut;
@@ -24,13 +25,15 @@ class Body extends StatelessWidget {
                         style: TextStyle(
                             fontSize: kHeadlineSize,
                             fontWeight: FontWeight.bold)),
-                    MySwitch(onSignedOut: onSignedOut),
+                    MySwitch(),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
+                Column(
+                  children: [
+                    RemaningBudget(),
+                    MyCostLists(),
+                  ],
                 ),
-                MyCostLists(),
               ],
             ),
           ),

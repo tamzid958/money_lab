@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/add_new_cost/add_new_cost.dart';
 import 'package:money_lab/src/layouts/budget/budget.dart';
@@ -49,11 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ];
     void _newCostAdd() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AddNewCost(),
-        ),
+      showMaterialModalBottomSheet(
+        context: context,
+        builder: (context) => AddNewCost(),
       );
     }
 

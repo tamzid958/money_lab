@@ -3,19 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 
 class MySwitch extends StatefulWidget {
-  final VoidCallback onSignedOut;
   const MySwitch({
     Key key,
-    this.onSignedOut,
   }) : super(key: key);
 
   @override
-  _MySwitchState createState() => _MySwitchState(onSignedOut);
+  _MySwitchState createState() => _MySwitchState();
 }
 
 class _MySwitchState extends State<MySwitch> {
-  VoidCallback onSignedOut;
-  _MySwitchState(this.onSignedOut);
   bool _isSwitched = false;
   @override
   Widget build(BuildContext context) {

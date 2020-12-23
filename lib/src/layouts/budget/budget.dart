@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/src/auth/auth.dart';
 
+import 'components/body.dart';
+
 class BudgetPage extends StatelessWidget {
   final AuthService auth;
   final VoidCallback onSignedOut;
@@ -8,8 +10,8 @@ class BudgetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Budget"),
+    return SafeArea(
+      child: Body(),
     );
   }
 }
