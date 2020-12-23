@@ -103,7 +103,7 @@ class PerMonthBudgetCard extends StatelessWidget {
                   height: KmodiPaddin,
                 ),
                 Text(
-                  (budgetList.target - budgetList.expend).toString(),
+                  "\$ " + (budgetList.target - budgetList.expend).toString(),
                   style: TextStyle(
                       color: kOptionalColor, fontSize: kTextSize / 1.4),
                 ),

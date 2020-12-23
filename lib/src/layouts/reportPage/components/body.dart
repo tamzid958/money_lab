@@ -40,7 +40,7 @@ class Body extends StatelessWidget {
                           style: TextStyle(color: kOptionalColor),
                         ),
                         Text(
-                          "\$32432",
+                          "\$ 32432",
                           style: TextStyle(
                               color: kRedLightColor, fontSize: kHeadlineSize),
                         ),
@@ -85,7 +85,7 @@ class Body extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "\$32432",
+                              "\$ 32432",
                               style: TextStyle(
                                 color: kOptionalColor,
                                 fontSize: kTitleSize,
@@ -117,7 +117,7 @@ class Body extends StatelessWidget {
                                   color: kOptionalColor, fontSize: kTextSize),
                             ),
                             Text(
-                              "\$32432",
+                              "\$ 32432",
                               style: TextStyle(
                                 color: kOptionalColor,
                                 fontSize: kTitleSize,
