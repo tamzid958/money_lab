@@ -33,7 +33,6 @@ class AuthService {
         await _auth.signInWithCredential(credential);
 
     User user = userCredential.user;
-    print("signed in " + user.displayName);
     loading.add(false);
     assert(await user.getIdToken() != null);
     final User currentUser = _auth.currentUser;
@@ -53,12 +52,12 @@ class AuthService {
   }
 
   Future<void> signOut() async {
+    await _googleSignIn.disconnect();
     return _auth.signOut();
   }
 
   Future<List> getProfile() async {
     User user = FirebaseAuth.instance.currentUser;
-    await user.reload();
     return user.providerData;
   }
 

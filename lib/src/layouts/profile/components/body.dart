@@ -122,18 +122,6 @@ class Body extends StatelessWidget {
                     SizedBox(
                       height: KmodiPaddin,
                     ),
-                    Text(
-                      "Phone",
-                    ),
-                    Text(
-                      snapshot.data[0].phoneNumber != null
-                          ? snapshot.data[0].phoneNumber
-                          : "not set yet",
-                      style: TextStyle(fontSize: kTitleSize),
-                    ),
-                    SizedBox(
-                      height: KmodiPaddin,
-                    ),
                     SizedBox(
                       width: double.infinity,
                       child: FlatButton.icon(
