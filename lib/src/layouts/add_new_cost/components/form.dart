@@ -250,7 +250,7 @@ class _FormScreenState extends State<FormScreen> {
                 },
                 child: Text(
                   'Submit',
-                  style: TextStyle(color: kBlackColor),
+                  style: TextStyle(color: kOptionalColor),
                 ),
               ),
             ),

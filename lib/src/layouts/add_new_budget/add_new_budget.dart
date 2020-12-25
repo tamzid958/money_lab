@@ -6,9 +6,9 @@ class AddNewBudget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 1.5,
-      child: Body(),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Body(),
     );
   }
 }

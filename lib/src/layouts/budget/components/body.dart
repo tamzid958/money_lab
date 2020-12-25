@@ -17,7 +17,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(KdefaultPaddin),
         child: Column(

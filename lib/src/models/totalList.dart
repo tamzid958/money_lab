@@ -22,6 +22,6 @@ List<TotalLists> totalLists = [
     month: "Dec",
     id: 2,
     total: 20000,
-    checked: false,
+    checked: true,
   ),
 ];
