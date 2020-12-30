@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/models/totalList.dart';
+import 'package:money_lab/src/layouts/edit_budget/edit_budget.dart';
+import 'package:money_lab/src/models/budgetLists.dart';
 import 'package:money_lab/src/services/search.dart';
 
 class Body extends StatelessWidget {
-  final TotalLists totalLists;
-  const Body({Key key, onSignedOut, this.totalLists}) : super(key: key);
+  final BudgetLists budgetList;
+  const Body({Key key, onSignedOut, this.budgetList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
-
-    print(totalLists);
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -40,11 +39,11 @@ class Body extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Money Spent",
+                          "Target",
                           style: TextStyle(color: kOptionalColor),
                         ),
                         Text(
-                          "\$ 32432",
+                          "\$ " + budgetList.target.toString(),
                           style: TextStyle(
                               color: kRedLightColor, fontSize: kHeadlineSize),
                         ),
@@ -89,7 +88,7 @@ class Body extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "\$ 32432",
+                              "\$ " + budgetList.income.toString(),
                               style: TextStyle(
                                 color: kOptionalColor,
                                 fontSize: kTitleSize,
@@ -121,7 +120,7 @@ class Body extends StatelessWidget {
                                   color: kOptionalColor, fontSize: kTextSize),
                             ),
                             Text(
-                              "\$ 32432",
+                              "\$ " + budgetList.expend.toString(),
                               style: TextStyle(
                                 color: kOptionalColor,
                                 fontSize: kTitleSize,
@@ -133,7 +132,20 @@ class Body extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: FlatButton(
+                  color: kAccentColor,
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditBudget(budgetList: budgetList),
+                    ),
+                  ),
+                  child: Text("Edit"),
+                ),
+              ),
             ],
           ),
         ),

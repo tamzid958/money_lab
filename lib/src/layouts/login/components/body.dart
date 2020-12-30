@@ -37,7 +37,7 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(KdefaultPaddin * 3),
-      color: kPrimaryColor,
+      color: kPrimeDark,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_lab/src/layouts/budget_detail/budget_detail.dart';
 import 'package:money_lab/src/models/budgetLists.dart';
 
 import 'permonth.dart';
@@ -20,6 +21,14 @@ class MyCostLists extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (context, int index) => PerMonthBudgetCard(
             budgetList: budgetLists[index],
+            press: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BudgetDetail(
+                  budgetList: budgetLists[index],
+                ),
+              ),
+            ),
           ),
         ),
       ),

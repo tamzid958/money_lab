@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "12.0.0"
-  adaptive_theme:
-    dependency: "direct main"
-    description:
-      name: adaptive_theme
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   analyzer:
     dependency: transitive
     description:
@@ -320,13 +313,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.56.1"
-  horizontal_calendar:
-    dependency: "direct main"
-    description:
-      name: horizontal_calendar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   http:
     dependency: transitive
     description:
@@ -416,13 +402,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
-  nepali_utils:
-    dependency: transitive
-    description:
-      name: nepali_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1"
   node_interop:
     dependency: transitive
     description:

@@ -1,13 +1,13 @@
 class BudgetLists {
   final String month, title;
   final int id;
-  final double budget, target, expend;
+  final double income, target, expend;
 
   BudgetLists({
     this.title,
     this.month,
     this.id,
-    this.budget,
+    this.income,
     this.target,
     this.expend,
   });
@@ -18,7 +18,7 @@ List<BudgetLists> budgetLists = [
     title: "January Budget",
     month: "Jan",
     id: 1,
-    budget: 9000,
+    income: 9000,
     target: 8000,
     expend: 6000,
   ),
@@ -26,7 +26,7 @@ List<BudgetLists> budgetLists = [
     title: "January Budget",
     month: "Jan",
     id: 1,
-    budget: 9000,
+    income: 9000,
     target: 8000,
     expend: 6000,
   ),
@@ -34,7 +34,7 @@ List<BudgetLists> budgetLists = [
     title: "January Budget",
     month: "Jan",
     id: 1,
-    budget: 9000,
+    income: 9000,
     target: 8000,
     expend: 6000,
   ),
@@ -42,7 +42,7 @@ List<BudgetLists> budgetLists = [
     title: "January Budget",
     month: "Jan",
     id: 1,
-    budget: 9000,
+    income: 9000,
     target: 8000,
     expend: 6000,
   ),
@@ -50,7 +50,7 @@ List<BudgetLists> budgetLists = [
     title: "January Budget",
     month: "Jan",
     id: 1,
-    budget: 9000,
+    income: 9000,
     target: 8000,
     expend: 6000,
   ),

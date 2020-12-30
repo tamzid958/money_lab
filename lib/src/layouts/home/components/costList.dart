@@ -17,7 +17,7 @@ class CostList extends StatelessWidget {
             costList.posMin == true
                 ? Icons.add_circle_outline_rounded
                 : Icons.remove_circle_outline,
-            color: costList.posMin == true ? kGreenColor : kRedLightColor,
+            color: costList.posMin == true ? kGreenLightColor : kRedLightColor,
           ),
           title: Text(
             costList.title,

@@ -9,7 +9,7 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(KdefaultPaddin * 3),
-      color: kPrimaryColor,
+      color: kPrimeDark,
       child: Center(
         child: Lottie.asset('assets/lotties/login.json'),
       ),
