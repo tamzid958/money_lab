@@ -29,8 +29,7 @@ List<CostLists> costLists = [
   CostLists(
       id: 1,
       title: "Salary",
-      description:
-          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      description: null,
       time: "4.5 A.M",
       currencyCode: "\$",
       money: 4343,

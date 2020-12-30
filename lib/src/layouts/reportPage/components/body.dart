@@ -4,11 +4,15 @@ import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/services/themeChanger.dart';
 
 class Body extends StatelessWidget {
+  //final TotalLists totalLists;
   const Body({Key key, onSignedOut}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
+    //var currentMon = DateTime.now().month;
+    //totalLists.where((month) => month.contains(currentMon).toList());
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(

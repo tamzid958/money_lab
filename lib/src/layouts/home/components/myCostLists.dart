@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_lab/src/layouts/detail_page/details.dart';
 import 'package:money_lab/src/models/costLists.dart';
 
 import 'costList.dart';
@@ -20,6 +21,14 @@ class MyCostLists extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (context, int index) => CostList(
             costList: costLists[index],
+            press: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(
+                  costList: costLists[index],
+                ),
+              ),
+            ),
           ),
         ),
       ),

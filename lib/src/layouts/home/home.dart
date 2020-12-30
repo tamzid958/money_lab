@@ -60,7 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _children[_selectedIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          size: 40,
+          color: kPrimaryColor,
+        ),
         onPressed: _newCostAdd,
       ),
       bottomNavigationBar: Container(

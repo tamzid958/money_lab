@@ -109,7 +109,7 @@ class _BodyState extends State<Body> {
                                 },
                                 color: Theme.of(context).accentColor,
                                 child: Text('Submit',
-                                    style: TextStyle(color: kOptionalColor)),
+                                    style: TextStyle(color: kBlackColor)),
                               ),
                             ),
                           ],

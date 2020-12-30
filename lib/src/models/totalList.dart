@@ -3,6 +3,7 @@ class TotalLists {
   final int id;
   final double total;
   final bool checked;
+
   TotalLists({
     this.month,
     this.id,
@@ -22,6 +23,6 @@ List<TotalLists> totalLists = [
     month: "Dec",
     id: 2,
     total: 20000,
-    checked: true,
+    checked: false,
   ),
 ];
