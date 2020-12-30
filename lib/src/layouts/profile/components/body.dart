@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/services/themeChanger.dart';
+import 'package:money_lab/src/services/search.dart';
 import 'package:money_lab/src/services/provider.dart';
 
 class Body extends StatelessWidget {
@@ -81,27 +81,32 @@ class Body extends StatelessWidget {
                                     Radius.circular(KmodiPaddin),
                                   ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      "\$24350",
-                                      style: TextStyle(color: kBlackColor),
-                                    ),
-                                    OutlineButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              KmodiPaddin * 3)),
-                                      borderSide:
-                                          BorderSide(color: kBlackColor),
-                                      onPressed: () => {},
-                                      child: Text(
-                                        'Update',
-                                        style: TextStyle(color: kBlackColor),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(KdefaultPaddin),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "\$24350",
+                                        style: TextStyle(
+                                            color: kBlackColor,
+                                            fontSize: kHeadlineSize),
                                       ),
-                                    ),
-                                  ],
+                                      OutlineButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                KmodiPaddin * 3)),
+                                        borderSide:
+                                            BorderSide(color: kBlackColor),
+                                        onPressed: () => {},
+                                        child: Text(
+                                          'Update',
+                                          style: TextStyle(color: kBlackColor),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

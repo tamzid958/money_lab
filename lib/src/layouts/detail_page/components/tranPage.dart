@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
+import 'package:money_lab/src/layouts/edit_cost/edit_cost.dart';
 import 'package:money_lab/src/models/costLists.dart';
 
 class TransSceen extends StatefulWidget {
@@ -93,7 +94,7 @@ class _TransSceenState extends State<TransSceen> {
                             height: 30.0,
                             width: 1.0,
                             color: kPrimaryColor,
-                            margin: const EdgeInsets.only(
+                            margin: EdgeInsets.only(
                                 left: KmodiPaddin, right: KmodiPaddin),
                           ),
                           Column(
@@ -156,7 +157,12 @@ class _TransSceenState extends State<TransSceen> {
                             borderRadius:
                                 BorderRadius.circular(KmodiPaddin * 3)),
                         borderSide: BorderSide(color: kBlackColor),
-                        onPressed: () => null,
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  EditCost(costList: costList)),
+                        ),
                         child: Text(
                           'Edit',
                           style: TextStyle(color: kBlackColor),
@@ -170,7 +176,7 @@ class _TransSceenState extends State<TransSceen> {
             SizedBox(
               height: 30,
             ),
-            costList.description != null
+            costList.description != null || costList.notes != null
                 ? Column(
                     children: [
                       CircleAvatar(
@@ -194,7 +200,26 @@ class _TransSceenState extends State<TransSceen> {
                         duration: Duration(milliseconds: 1000),
                         child: Align(
                           alignment: Alignment.topLeft,
-                          child: Text(costList.description),
+                          child: Text(
+                            "Description: " +
+                                (costList.description ??
+                                    "No Description Available"),
+                            style: TextStyle(fontSize: kTextSize),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      AnimatedOpacity(
+                        opacity: _readMore ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 1000),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Note: " + (costList.notes ?? "No Note Available"),
+                            style: TextStyle(fontSize: kTextSize),
+                          ),
                         ),
                       ),
                     ],

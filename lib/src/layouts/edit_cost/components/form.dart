@@ -1,32 +1,28 @@
 // This is the stateful widget that the main application instantiates.
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:dropdown_formfield/dropdown_formfield.dart';
-
-import 'datepicker.dart';
+import 'package:money_lab/src/models/costLists.dart';
+import 'package:intl/intl.dart';
 
 class FormScreen extends StatefulWidget {
-  FormScreen({Key key}) : super(key: key);
+  final CostLists costList;
+  FormScreen({Key key, this.costList}) : super(key: key);
 
   @override
-  _FormScreenState createState() => _FormScreenState();
+  _FormScreenState createState() => _FormScreenState(costList: costList);
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _FormScreenState extends State<FormScreen> {
-  String _myActivity;
-  bool visibilityIncome = true;
-  TextEditingController amount = TextEditingController();
-  TextEditingController tax = TextEditingController();
-  TextEditingController mercent = TextEditingController();
-  TextEditingController purpose = TextEditingController();
-  TextEditingController notes = TextEditingController();
+  CostLists costList;
+  final dateFormat = DateFormat('dd-MM-yyyy');
+  _FormScreenState({this.costList});
+
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _myActivity = '';
   }
 
   @override
@@ -56,43 +52,8 @@ class _FormScreenState extends State<FormScreen> {
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[
-                  DropDownFormField(
-                    titleText: 'Create Expenditure',
-                    hintText: 'Please choose one',
-                    value: _myActivity,
-                    onSaved: (value) {
-                      setState(() {
-                        _myActivity = value;
-                      });
-                    },
-                    onChanged: (value) {
-                      setState(() {
-                        _myActivity = value;
-                        if (value == "Income") {
-                          visibilityIncome = true;
-                        } else {
-                          visibilityIncome = false;
-                        }
-                      });
-                    },
-                    dataSource: [
-                      {
-                        "display": "Income",
-                        "value": "Income",
-                      },
-                      {
-                        "display": "Expense",
-                        "value": "Expense",
-                      },
-                    ],
-                    textField: 'display',
-                    valueField: 'value',
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
                   TextFormField(
-                    controller: amount,
+                    initialValue: costList.money.toString(),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -111,9 +72,9 @@ class _FormScreenState extends State<FormScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  !visibilityIncome
+                  !costList.posMin
                       ? TextFormField(
-                          controller: mercent,
+                          initialValue: costList.title,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Merchant',
@@ -130,9 +91,9 @@ class _FormScreenState extends State<FormScreen> {
                           },
                         )
                       : Container(),
-                  visibilityIncome
+                  costList.posMin
                       ? TextFormField(
-                          controller: mercent,
+                          initialValue: costList.title,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Source',
@@ -152,23 +113,12 @@ class _FormScreenState extends State<FormScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  MyTextFieldDatePicker(
-                    labelText: "Date",
-                    prefixIcon: Icon(Icons.date_range),
-                    suffixIcon: Icon(Icons.arrow_drop_down),
-                    lastDate: DateTime.now().add(Duration(days: 366)),
-                    firstDate: DateTime.now(),
-                    initialDate: DateTime.now().add(Duration(days: 1)),
-                    onDateChanged: (selectedDate) {
-                      // Do something with the selected date
-                    },
-                  ),
                   SizedBox(
                     height: 10,
                   ),
-                  !visibilityIncome
+                  !costList.posMin
                       ? TextFormField(
-                          controller: purpose,
+                          initialValue: costList.description ?? "",
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Purpose',
@@ -179,9 +129,9 @@ class _FormScreenState extends State<FormScreen> {
                           ),
                         )
                       : Container(),
-                  visibilityIncome
+                  costList.posMin
                       ? TextFormField(
-                          controller: mercent,
+                          initialValue: costList.description ?? "",
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Description',
@@ -202,7 +152,7 @@ class _FormScreenState extends State<FormScreen> {
                     height: 10,
                   ),
                   TextFormField(
-                    controller: notes,
+                    initialValue: costList.notes ?? "",
                     maxLines: 6,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),

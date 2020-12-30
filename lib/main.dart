@@ -5,19 +5,17 @@ import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/src/layouts/loading/loading.dart';
 import 'package:money_lab/src/services/provider.dart';
 import 'constants.dart';
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'src/auth/root.dart';
 
 var savedThemeMode;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final savedThemeMode = await AdaptiveTheme.getThemeMode();
-  runApp(MyApp(savedThemeMode: savedThemeMode));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({AdaptiveThemeMode savedThemeMode});
+  MyApp();
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -70,36 +68,22 @@ class AdaptiveApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthProvider(
       auth: AuthService(),
-      child: AdaptiveTheme(
-          light: ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.grey,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            primaryColor: kPrimaryColor,
-            accentColor: kAccentColor,
-            textTheme: Theme.of(context)
-                .textTheme
-                .apply(bodyColor: kTextColor, fontFamily: "Boing"),
-          ),
-          dark: ThemeData(
-            brightness: Brightness.dark,
-            primarySwatch: Colors.grey,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            primaryColor: kPrimaryColor,
-            accentColor: kOptionalColor,
-            textTheme: Theme.of(context)
-                .textTheme
-                .apply(bodyColor: kTextLightColor, fontFamily: "Boing"),
-          ),
-          initial: savedThemeMode ?? AdaptiveThemeMode.light,
-          builder: (theme, darkTheme) => MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Money Lab',
-                theme: theme,
-                darkTheme: darkTheme,
-                home: RootPage(),
-              ) //home: HomeScreen(),
-          ),
-    );
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Money Lab',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.grey,
+          canvasColor: kPrimeDark,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          primaryColor: kPrimaryColor,
+          accentColor: kAccentColor,
+          textTheme: Theme.of(context)
+              .textTheme
+              .apply(bodyColor: kTextLightColor, fontFamily: "Boing"),
+        ),
+        home: RootPage(),
+      ),
+    ); //home: HomeScreen(),
   }
 }
