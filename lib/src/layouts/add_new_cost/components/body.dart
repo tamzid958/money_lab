@@ -19,11 +19,14 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "   Conservation",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.all(KdefaultPaddin / 2),
+                  child: Text(
+                    "   Conservation",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
