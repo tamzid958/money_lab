@@ -1,36 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/src/layouts/detail_page/details.dart';
-import 'package:money_lab/src/models/costLists.dart';
+import 'package:money_lab/src/models/costLists.new.dart';
+import 'package:money_lab/src/services/service_costLists.dart';
 
 import 'costList.dart';
 
-class MyCostLists extends StatelessWidget {
+class MyCostLists extends StatefulWidget {
   const MyCostLists({
     Key key,
   }) : super(key: key);
 
   @override
+  _MyCostListsState createState() => _MyCostListsState();
+}
+
+class _MyCostListsState extends State<MyCostLists> {
+  Future<List<CostLists>> allcosts;
+  @override
+  initState() {
+    super.initState();
+    allcosts = ServiceCostList.getAllCosts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height / 1.8,
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
-          itemCount: costLists.length,
-          separatorBuilder: (BuildContext context, int index) => Divider(),
-          itemBuilder: (context, int index) => CostList(
-            costList: costLists[index],
-            press: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailsScreen(
-                  costList: costLists[index],
+      child: FutureBuilder(
+        future: allcosts,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return Container(
+              height: MediaQuery.of(context).size.height / 1.8,
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    Divider(),
+                itemBuilder: (context, int index) => CostList(
+                  costList: snapshot.data[index],
+                  press: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(
+                        costList: snapshot.data[index],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
+            );
+          }
+        },
       ),
     );
   }

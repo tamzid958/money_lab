@@ -4,11 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:money_lab/src/auth/auth.dart';
 import 'package:money_lab/src/layouts/loading/loading.dart';
 import 'package:money_lab/src/services/provider.dart';
+import 'package:money_lab/src/utils/database.dart';
 import 'constants.dart';
 import 'src/auth/root.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseCreator().initDatabase();
   runApp(MyApp());
 }
 

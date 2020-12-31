@@ -1,77 +1,68 @@
+import 'dart:io';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class DBProvider {
-  DBProvider._();
+Database db;
 
-  static final DBProvider db = DBProvider._();
-  static Database _database;
+class DatabaseCreator {
+  static const costListTable = 'costlists';
+  static const id = 'id';
+  static const title = 'title';
+  static const time = 'time';
+  static const notes = 'notes';
+  static const money = 'money';
+  static const posMin = 'posMin';
+  static const costId = 'costId';
 
-  Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await initDB();
-    return _database;
-  }
-
-  initDB() async {
-    return await openDatabase(
-      join(await getDatabasesPath(), 'money_lab.db'),
-      onCreate: (db, version) async {
-        await db.execute('''
- CREATE TABLE "costlists" (
-	"id"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-	"title"	TEXT NOT NULL,
-	"time"	NUMERIC NOT NULL,
-	"notes"	TEXT,
-	"money"	NUMERIC NOT NULL,
-	"posMin"	INTEGER NOT NULL
-);
-
-     CREATE TABLE "budgetlist" (
-	"id"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-	"title"	TEXT NOT NULL,
-	"month"	TEXT NOT NULL,
-	"income"	NUMERIC NOT NULL,
-	"target"	NUMERIC NOT NULL,
-	"expend"	NUMERIC NOT NULL
-);
-CREATE UNIQUE INDEX "budgetId" ON "budgetlist" (
-	"id"
-);
-CREATE UNIQUE INDEX "costId" ON "costlists" (
-	"id"
-);
-     ''');
-      },
-      version: 1,
-    );
-  }
-
-  newCost(newCost) async {
-    final db = await database;
-    var costLists = await db.rawInsert(
-      '''
-    INSERT INTO `costlists` (id, title, time, notes, money, posMin) VALUES (?,?,?,?,?,?);
-    ''',
-      [
-        null,
-        newCost.title,
-        newCost.time,
-        newCost.notes,
-        newCost.money,
-        newCost.posMin
-      ],
-    );
-    return costLists;
-  }
-
-  Future<dynamic> get getCost async {
-    final db = await database;
-    var costLists = await db.query("costlists");
-    if (costLists.length == 0) {
-      return null;
+  static void databaseLog(String function, String sql,
+      [List<Map<String, dynamic>> selectQueryResult,
+      int insertAndUpdateQueryResult]) {
+    print(function);
+    print(sql);
+    if (selectQueryResult != null) {
+      print(selectQueryResult);
+    } else if (insertAndUpdateQueryResult != null) {
+      print(insertAndUpdateQueryResult);
     }
-    var costListsMap = costLists[0];
-    return costLists.isNotEmpty ? costListsMap : Null;
+  }
+
+  Future<void> createCostListTable(Database db) async {
+    final costListSql = '''
+          CREATE TABLE $costListTable (
+          $id	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+          $title TEXT NOT NULL,
+          $time	TEXT NOT NULL,
+          $notes TEXT,
+          $money	REAL NOT NULL,
+          $posMin	BIT NOT NULL
+          );
+          CREATE UNIQUE INDEX $costId ON $costListTable (
+          $id
+          );
+    ''';
+    await db.execute(costListSql);
+  }
+
+  Future<String> getDatabasePath(String dbName) async {
+    final databasePath = await getDatabasesPath();
+    final path = join(databasePath, dbName);
+
+    if (await Directory(dirname(path)).exists()) {
+      //await deleteDatabase(path);
+    } else {
+      await Directory(dirname(path)).create(recursive: true);
+    }
+    return path;
+  }
+
+  Future<void> initDatabase() async {
+    final path = await getDatabasePath('money_lab');
+    db = await openDatabase(path, version: 1, onCreate: onCreate);
+    print(db);
+  }
+
+  Future<void> onCreate(Database db, int version) async {
+    await createCostListTable(db);
   }
 }

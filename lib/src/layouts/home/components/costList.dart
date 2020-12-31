@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/models/costLists.dart';
+import 'package:money_lab/src/models/costLists.new.dart';
 
 class CostList extends StatefulWidget {
   final CostLists costList;

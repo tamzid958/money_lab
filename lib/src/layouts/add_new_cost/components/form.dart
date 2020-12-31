@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:money_lab/src/models/costLists.new.dart';
 import 'package:money_lab/src/services/datepicker.dart';
+import 'package:money_lab/src/services/service_costLists.dart';
 
 class FormScreen extends StatefulWidget {
   FormScreen({Key key}) : super(key: key);
@@ -13,9 +15,12 @@ class FormScreen extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController _amountController = TextEditingController();
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _noteController = TextEditingController();
   String _myActivity;
   bool visibilityIncome = true;
-
+  var costDate;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -29,10 +34,20 @@ class _FormScreenState extends State<FormScreen> {
     super.dispose();
   }
 
-  _saveForm() {
+  _saveForm() async {
     var form = _formKey.currentState;
     if (form.validate()) {
       form.save();
+
+      int count = await ServiceCostList.costCount();
+      final costlist = CostLists(
+          count,
+          _titleController.text,
+          costDate.toString(),
+          double.parse(_amountController.text),
+          visibilityIncome,
+          _noteController.text);
+      await ServiceCostList.addCost(costlist);
       setState(() {});
     }
   }
@@ -87,6 +102,7 @@ class _FormScreenState extends State<FormScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _amountController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -106,6 +122,7 @@ class _FormScreenState extends State<FormScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _titleController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: !visibilityIncome ? 'Merchant' : 'Source',
@@ -132,6 +149,9 @@ class _FormScreenState extends State<FormScreen> {
                     firstDate: DateTime.now(),
                     initialDate: DateTime.now(),
                     onDateChanged: (selectedDate) {
+                      setState(() {
+                        costDate = selectedDate;
+                      });
                       // Do something with the selected date
                     },
                   ),
@@ -139,6 +159,7 @@ class _FormScreenState extends State<FormScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _noteController,
                     maxLines: 6,
                     maxLength: 160,
                     maxLengthEnforced: true,
@@ -158,11 +179,12 @@ class _FormScreenState extends State<FormScreen> {
               width: double.infinity,
               child: RaisedButton(
                 color: Theme.of(context).accentColor,
-                onPressed: () {
+                onPressed: () async {
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
                   if (_formKey.currentState.validate()) {
                     // Process data.
+
                     _saveForm();
                     Navigator.pop(context);
                   }
