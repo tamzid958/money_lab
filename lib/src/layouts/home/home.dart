@@ -57,13 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: _children[_selectedIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.add,
           size: 40,
-          color: kPrimaryColor,
         ),
         onPressed: _newCostAdd,
       ),
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               topRight: Radius.circular(KdefaultPaddin),
               topLeft: Radius.circular(KdefaultPaddin)),
           boxShadow: [
-            BoxShadow(color: kLightBlueColor, spreadRadius: 0, blurRadius: 0),
+            BoxShadow(color: kAccentColor, spreadRadius: 0, blurRadius: 0),
           ],
         ),
         child: ClipRRect(

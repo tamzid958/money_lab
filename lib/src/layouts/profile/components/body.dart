@@ -89,20 +89,18 @@ class Body extends StatelessWidget {
                                     children: [
                                       Text(
                                         "\$24350",
-                                        style: TextStyle(
-                                            color: kBlackColor,
-                                            fontSize: kHeadlineSize),
+                                        style:
+                                            TextStyle(fontSize: kHeadlineSize),
                                       ),
                                       OutlineButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(
                                                 KmodiPaddin * 3)),
                                         borderSide:
-                                            BorderSide(color: kBlackColor),
+                                            BorderSide(color: kOptionalColor),
                                         onPressed: () => {},
                                         child: Text(
                                           'Update',
-                                          style: TextStyle(color: kBlackColor),
                                         ),
                                       ),
                                     ],
@@ -133,9 +131,10 @@ class Body extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                         label: Text(
                           "Download Backup",
-                          style: TextStyle(color: kBlackColor),
                         ),
-                        icon: Icon(Icons.cloud_download, color: kBlackColor),
+                        icon: Icon(
+                          Icons.cloud_download,
+                        ),
                         onPressed: () => null,
                       ),
                     ),
@@ -145,9 +144,10 @@ class Body extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                         label: Text(
                           "Log Out",
-                          style: TextStyle(color: kBlackColor),
                         ),
-                        icon: Icon(Icons.logout, color: kBlackColor),
+                        icon: Icon(
+                          Icons.logout,
+                        ),
                         onPressed: () => _signOut(context, auth),
                       ),
                     )

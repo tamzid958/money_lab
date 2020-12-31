@@ -48,7 +48,7 @@ class _FormScreenState extends State<FormScreen> {
         child: Column(
           children: [
             Container(
-              height: 500,
+              height: MediaQuery.of(context).size.height / 1.8,
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[
@@ -72,88 +72,31 @@ class _FormScreenState extends State<FormScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  !costList.posMin
-                      ? TextFormField(
-                          initialValue: costList.title,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Merchant',
-                            hintText: 'Merchant',
-                            prefix: Icon(
-                              Icons.store,
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter valid text';
-                            }
-                            return null;
-                          },
-                        )
-                      : Container(),
-                  costList.posMin
-                      ? TextFormField(
-                          initialValue: costList.title,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Source',
-                            hintText: 'Source',
-                            prefix: Icon(
-                              Icons.source,
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter valid text';
-                            }
-                            return null;
-                          },
-                        )
-                      : Container(),
-                  SizedBox(
-                    height: 10,
+                  TextFormField(
+                    initialValue: costList.title,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: !costList.posMin ? 'Merchant' : 'Source',
+                      hintText: !costList.posMin ? 'Merchant' : 'Source',
+                      prefix: Icon(
+                        !costList.posMin ? Icons.store : Icons.source,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter valid text';
+                      }
+                      return null;
+                    },
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  !costList.posMin
-                      ? TextFormField(
-                          initialValue: costList.description ?? "",
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Purpose',
-                            hintText: 'Purpose',
-                            prefix: Icon(
-                              Icons.bookmark,
-                            ),
-                          ),
-                        )
-                      : Container(),
-                  costList.posMin
-                      ? TextFormField(
-                          initialValue: costList.description ?? "",
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Description',
-                            hintText: 'Description',
-                            prefix: Icon(
-                              Icons.description,
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter valid text';
-                            }
-                            return null;
-                          },
-                        )
-                      : Container(),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     initialValue: costList.notes ?? "",
                     maxLines: 6,
+                    maxLength: 160,
+                    maxLengthEnforced: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Notes',
@@ -181,7 +124,6 @@ class _FormScreenState extends State<FormScreen> {
                 },
                 child: Text(
                   'Submit',
-                  style: TextStyle(color: kBlackColor),
                 ),
               ),
             ),

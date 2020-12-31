@@ -135,7 +135,7 @@ class Body extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child: FlatButton(
+                child: FlatButton.icon(
                   color: kAccentColor,
                   onPressed: () => Navigator.push(
                     context,
@@ -143,7 +143,17 @@ class Body extends StatelessWidget {
                       builder: (context) => EditBudget(budgetList: budgetList),
                     ),
                   ),
-                  child: Text("Edit"),
+                  label: Text("Edit"),
+                  icon: Icon(Icons.edit),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: RaisedButton.icon(
+                  color: kRedLightColor,
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.delete),
+                  label: Text("Delete"),
                 ),
               ),
             ],

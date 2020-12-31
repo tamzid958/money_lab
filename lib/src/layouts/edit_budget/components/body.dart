@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/models/budgetLists.dart';
 
@@ -13,14 +14,6 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   BudgetLists budgetList;
   _BodyState({this.budgetList});
-  double _currentSliderValue = 20;
-
-  @override
-  void initState() {
-    _currentSliderValue = budgetList.target;
-    super.initState();
-  }
-
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -36,78 +29,85 @@ class _BodyState extends State<Body> {
               ],
             ),
           ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(KdefaultPaddin),
-              child: Column(
-                children: [
-                  Container(
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Edit Month: " + budgetList.month,
-                          ),
-                          SizedBox(
-                            height: KmodiPaddin,
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Title',
-                              hintText: 'Title',
-                              prefix: Icon(
-                                Icons.title,
+          SingleChildScrollView(
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(KdefaultPaddin),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              height: KmodiPaddin,
+                            ),
+                            TextFormField(
+                              initialValue: budgetList.title,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Title',
+                                hintText: 'Title',
+                                prefix: Icon(
+                                  Icons.title,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter valid text';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: KmodiPaddin,
+                            ),
+                            TextFormField(
+                              initialValue: budgetList.target.toString(),
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Target',
+                                hintText: 'Target',
+                                prefix: Icon(
+                                  Icons.center_focus_strong,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter valid number';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: KmodiPaddin,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: FlatButton(
+                                onPressed: () {
+                                  // Validate returns true if the form is valid, or false
+                                  // otherwise.
+                                  if (_formKey.currentState.validate()) {
+                                    // If the form is valid, display a Snackbar.
+                                    Navigator.pop(context);
+                                  }
+                                },
+                                color: Theme.of(context).accentColor,
+                                child: Text(
+                                  'Submit',
+                                ),
                               ),
                             ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter valid text';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(
-                            height: KmodiPaddin,
-                          ),
-                          Text("Target Budget: "),
-                          Slider(
-                            value: _currentSliderValue,
-                            min: 0,
-                            activeColor: kAccentColor,
-                            inactiveColor: kPrimaryColor,
-                            max: budgetList.income,
-                            divisions: 100,
-                            label: _currentSliderValue.round().toString(),
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue = value;
-                              });
-                            },
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: FlatButton(
-                              onPressed: () {
-                                // Validate returns true if the form is valid, or false
-                                // otherwise.
-                                if (_formKey.currentState.validate()) {
-                                  // If the form is valid, display a Snackbar.
-                                  Navigator.pop(context);
-                                }
-                              },
-                              color: Theme.of(context).accentColor,
-                              child: Text('Submit',
-                                  style: TextStyle(color: kBlackColor)),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

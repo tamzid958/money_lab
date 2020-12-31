@@ -10,31 +10,28 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(KdefaultPaddin),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Stat",
-                      style: TextStyle(
-                          fontSize: kHeadlineSize,
-                          fontWeight: FontWeight.bold)),
-                  MySwitch(),
-                ],
-              ),
-              Column(
-                children: [
-                  RemaningBudget(),
-                  MyCostLists(),
-                ],
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(KdefaultPaddin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Stat",
+                    style: TextStyle(
+                        fontSize: kHeadlineSize, fontWeight: FontWeight.bold)),
+                MySwitch(),
+              ],
+            ),
+            Column(
+              children: [
+                RemaningBudget(),
+                MyCostLists(),
+              ],
+            ),
+          ],
         ),
       ),
     );

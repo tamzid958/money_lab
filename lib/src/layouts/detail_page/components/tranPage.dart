@@ -144,9 +144,7 @@ class _TransSceenState extends State<TransSceen> {
                                 color: kBlackColor, fontSize: kTextSize),
                           ),
                           Text(
-                            costList.currencyCode +
-                                " " +
-                                costList.money.toString(),
+                            "\$" + " " + costList.money.toString(),
                             style: TextStyle(
                                 color: kBlackColor, fontSize: kHeadlineSize),
                           ),
@@ -174,10 +172,11 @@ class _TransSceenState extends State<TransSceen> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
-            costList.description != null || costList.notes != null
+            costList.notes != null
                 ? Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(
                         radius: 30,
@@ -193,31 +192,16 @@ class _TransSceenState extends State<TransSceen> {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       AnimatedOpacity(
                         opacity: _readMore ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 1000),
+                        duration: Duration(milliseconds: 300),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Description: " +
-                                (costList.description ??
-                                    "No Description Available"),
-                            style: TextStyle(fontSize: kTextSize),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      AnimatedOpacity(
-                        opacity: _readMore ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 1000),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Note: " + (costList.notes ?? "No Note Available"),
+                            (costList.notes ?? "No Note Available"),
+                            textAlign: TextAlign.justify,
                             style: TextStyle(fontSize: kTextSize),
                           ),
                         ),
@@ -228,6 +212,18 @@ class _TransSceenState extends State<TransSceen> {
                     alignment: Alignment.center,
                     child: Text("No Description Available"),
                   ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: RaisedButton.icon(
+                color: kRedLightColor,
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.delete),
+                label: Text("Delete"),
+              ),
+            ),
           ],
         ),
       ),

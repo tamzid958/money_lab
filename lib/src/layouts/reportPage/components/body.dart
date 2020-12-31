@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/models/totalList.dart';
+import 'package:money_lab/src/models/budgetLists.dart';
+
 import 'package:money_lab/src/services/search.dart';
 
 class Body extends StatelessWidget {
-  final TotalLists totalLists;
-  const Body({Key key, onSignedOut, this.totalLists}) : super(key: key);
+  final BudgetLists budgetLists;
+  const Body({Key key, onSignedOut, this.budgetLists}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
 
-    print(totalLists);
     return SingleChildScrollView(
       child: Container(
         child: Padding(

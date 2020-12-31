@@ -7,8 +7,6 @@ import 'package:money_lab/src/services/provider.dart';
 import 'constants.dart';
 import 'src/auth/root.dart';
 
-var savedThemeMode;
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -78,9 +76,10 @@ class AdaptiveApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColor: kPrimaryColor,
           accentColor: kAccentColor,
-          textTheme: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: kTextLightColor, fontFamily: "Boing"),
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: kTextLightColor,
+                fontFamily: "Boing",
+              ),
         ),
         home: RootPage(),
       ),
