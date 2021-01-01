@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/edit_budget/edit_budget.dart';
 import 'package:money_lab/src/models/budgetLists.dart';
@@ -11,6 +12,15 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _editBudget(budgetList) {
+      showMaterialModalBottomSheet(
+        context: context,
+        builder: (context) => EditBudget(
+          budgetList: budgetList,
+        ),
+      );
+    }
+
     var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
     return SingleChildScrollView(
       child: Container(
@@ -137,12 +147,7 @@ class Body extends StatelessWidget {
                 width: double.infinity,
                 child: FlatButton.icon(
                   color: kAccentColor,
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditBudget(budgetList: budgetList),
-                    ),
-                  ),
+                  onPressed: () => _editBudget(budgetList),
                   label: Text("Edit"),
                   icon: Icon(Icons.edit),
                 ),

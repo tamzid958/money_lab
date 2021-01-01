@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:money_lab/src/layouts/home/home.dart';
 import 'package:money_lab/src/models/costLists.new.dart';
 import 'package:money_lab/src/services/datepicker.dart';
+import 'package:money_lab/src/services/datformatter.dart';
 import 'package:money_lab/src/services/service_costLists.dart';
 
 class FormScreen extends StatefulWidget {
@@ -20,7 +22,7 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController _noteController = TextEditingController();
   String _myActivity;
   bool visibilityIncome = true;
-  var costDate;
+  var costDate = DateTime.now();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -42,7 +44,7 @@ class _FormScreenState extends State<FormScreen> {
       final costlist = CostLists(
           null,
           _titleController.text,
-          costDate.toString(),
+          DateFormater.convertDateTimeDisplay(costDate.toString()),
           double.parse(_amountController.text),
           visibilityIncome,
           _noteController.text);
@@ -185,7 +187,11 @@ class _FormScreenState extends State<FormScreen> {
                     // Process data.
 
                     _saveForm();
-                    Navigator.pop(context);
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false);
+                    //Navigator.pop(context);
+                    // Navigator.pop(context);
                   }
                 },
                 child: Text(

@@ -19,7 +19,13 @@ class _MyCostListsState extends State<MyCostLists> {
   @override
   initState() {
     super.initState();
-    allcosts = ServiceCostList.getAllCosts();
+    _allCostsFunction();
+  }
+
+  _allCostsFunction() async {
+    setState(() {
+      allcosts = ServiceCostList.getAllCosts();
+    });
   }
 
   @override

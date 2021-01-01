@@ -1,6 +1,8 @@
 import 'package:money_lab/src/utils/database.dart';
 import 'package:money_lab/src/models/costLists.new.dart';
 
+import 'datformatter.dart';
+
 class ServiceCostList {
   static Future<List<CostLists>> getAllCosts() async {
     final sql = '''SELECT * FROM ${DatabaseCreator.costListTable}''';
@@ -82,5 +84,41 @@ class ServiceCostList {
     int count = data[0].values.elementAt(0);
     int idForNewItem = count++;
     return idForNewItem;
+  }
+
+  static Future<List<Map<String, dynamic>>> getAllSumCost() async {
+    var date = DateTime.now().toString();
+    date = DateFormater.convertDateTimeDisplay(date);
+    date = date.substring(3);
+    final sql =
+        ''' SELECT ${DatabaseCreator.posMin}, SUM(${DatabaseCreator.money}), 
+    SUM(${DatabaseCreator.money}) AS money FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.time} LIKE '%$date'
+    GROUP BY ${DatabaseCreator.posMin}''';
+    final data = await db.rawQuery(sql);
+    if (data.length == 0) {
+      return null;
+    }
+    return data;
+  }
+
+  static Future<List<double>> getLastElevenCost() async {
+    var date = DateTime.now().toString();
+    date = DateFormater.convertDateTimeDisplay(date);
+    date = date.substring(3);
+
+    final sql =
+        ''' SELECT ${DatabaseCreator.money} FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.posMin} = 0 AND ${DatabaseCreator.time} LIKE '%$date' ORDER BY ${DatabaseCreator.id} DESC LIMIT 11''';
+    final data = await db.rawQuery(sql);
+
+    if (data.length == 0) {
+      return null;
+    }
+    List<double> moneyArr = List(data.length);
+
+    for (var i = 0; i < data.length; i++) {
+      moneyArr[i] = data[i]["money"];
+    }
+
+    return moneyArr;
   }
 }

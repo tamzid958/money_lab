@@ -1,6 +1,7 @@
 // This is the stateful widget that the main application instantiates.
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
+import 'package:money_lab/src/layouts/home/home.dart';
 import 'package:money_lab/src/models/costLists.new.dart';
 import 'package:intl/intl.dart';
 import 'package:money_lab/src/services/service_costLists.dart';
@@ -133,7 +134,9 @@ class _FormScreenState extends State<FormScreen> {
                   if (_formKey.currentState.validate()) {
                     // Process data.
                     _saveForm();
-                    Navigator.pop(context);
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false);
                   }
                 },
                 child: Text(

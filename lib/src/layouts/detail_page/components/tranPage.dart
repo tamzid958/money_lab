@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/edit_cost/edit_cost.dart';
+import 'package:money_lab/src/layouts/home/home.dart';
 import 'package:money_lab/src/models/costLists.new.dart';
 import 'package:money_lab/src/services/service_costLists.dart';
 
@@ -20,17 +20,11 @@ class _TransSceenState extends State<TransSceen> {
 
   _TransSceenState({this.costList});
 
-  String convertDateTimeDisplay(String date) {
-    final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
-    final DateFormat serverFormater = DateFormat('dd-MM-yyyy');
-    final DateTime displayDate = displayFormater.parse(date);
-    final String formatted = serverFormater.format(displayDate);
-    return formatted;
-  }
-
   Future<void> deleteCost(BuildContext context) async {
     await ServiceCostList.deleteCost(costList.id);
-    Navigator.pop(context);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -123,7 +117,7 @@ class _TransSceenState extends State<TransSceen> {
                                     color: kBlackColor, fontSize: kTextSize),
                               ),
                               Text(
-                                convertDateTimeDisplay(costList.time),
+                                costList.time,
                                 style: TextStyle(
                                     color: kBlackColor, fontSize: kTitleSize),
                               ),
