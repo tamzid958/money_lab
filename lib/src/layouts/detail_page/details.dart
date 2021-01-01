@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:money_lab/src/models/costLists.dart';
+import 'package:money_lab/src/models/costLists.new.dart';
+//import 'package:money_lab/src/models/costLists.dart';
 
 import 'components/body.dart';
 

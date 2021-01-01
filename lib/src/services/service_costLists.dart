@@ -56,7 +56,7 @@ class ServiceCostList {
     await db.rawDelete(sql);
   }
 
-  static Future<void> updateTodo(CostLists costList) async {
+  static Future<void> updateCost(CostLists costList) async {
     final sql = '''UPDATE ${DatabaseCreator.costListTable}
     SET ${DatabaseCreator.title} = ?,
     ${DatabaseCreator.money} = ?,

@@ -39,9 +39,8 @@ class _FormScreenState extends State<FormScreen> {
     if (form.validate()) {
       form.save();
 
-      int count = await ServiceCostList.costCount();
       final costlist = CostLists(
-          count,
+          null,
           _titleController.text,
           costDate.toString(),
           double.parse(_amountController.text),

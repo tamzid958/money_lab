@@ -23,13 +23,23 @@ class _MyCostListsState extends State<MyCostLists> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: FutureBuilder(
         future: allcosts,
         builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return Container(
+              height: MediaQuery.of(context).size.height / 1.8,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           } else {
             return Container(
               height: MediaQuery.of(context).size.height / 1.8,
