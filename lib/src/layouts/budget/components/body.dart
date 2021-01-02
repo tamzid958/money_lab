@@ -157,7 +157,9 @@ class _BodyState extends State<Body> {
                   ListTile(
                     tileColor: kRedColor,
                     title: Text(
-                        result != null ? result.toStringAsFixed(3) : "00.00",
+                        result != null
+                            ? "\$ " + result.toStringAsFixed(3)
+                            : "\$ 00.00",
                         style: TextStyle(fontSize: kTitleSize)),
                     trailing: _buildDropDrowButton(toCurrency),
                   ),
