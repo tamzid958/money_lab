@@ -1,16 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/services/search.dart';
+import 'package:money_lab/src/layouts/add_new_cost/add_new_cost.dart';
 import 'package:money_lab/src/services/provider.dart';
+import 'package:money_lab/src/services/searcher.dart';
+import 'package:money_lab/src/services/service_costLists.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final VoidCallback onSignedOut;
   const Body({Key key, this.onSignedOut}) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  Future<double> remaining;
+
+  @override
+  initState() {
+    super.initState();
+    _allCostsFunction();
+  }
+
+  _allCostsFunction() {
+    setState(() {
+      remaining = ServiceCostList.getProfileRemain();
+    });
+  }
 
   void _signOut(BuildContext context, auth) async {
     try {
       await auth.signOut();
-      onSignedOut();
+      widget.onSignedOut();
     } catch (e) {
       print(e);
     }
@@ -19,12 +40,14 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var auth = AuthProvider.of(context).auth;
+
     Future<List> profileData = auth.getProfile();
 
     return FutureBuilder<List>(
-      future: profileData,
+      future: Future.wait([profileData, remaining]),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          print(snapshot.data[1]);
           return SingleChildScrollView(
             child: Container(
               child: Padding(
@@ -41,7 +64,7 @@ class Body extends StatelessWidget {
                               fontSize: kHeadlineSize,
                               fontWeight: FontWeight.bold),
                         ),
-                        MySwitch(),
+                        Searcher(),
                       ],
                     ),
                     Card(
@@ -56,9 +79,9 @@ class Body extends StatelessWidget {
                                 CircleAvatar(
                                   backgroundColor: kPrimaryColor,
                                   backgroundImage:
-                                      snapshot.data[0].photoURL != null
+                                      snapshot.data[0][0].photoURL != null
                                           ? NetworkImage(
-                                              snapshot.data[0].photoURL,
+                                              snapshot.data[0][0].photoURL,
                                             )
                                           : AssetImage(
                                               "assets/images/user.png",
@@ -67,7 +90,7 @@ class Body extends StatelessWidget {
                                   minRadius: 30.0,
                                 ),
                                 Text(
-                                  snapshot.data[0].displayName,
+                                  snapshot.data[0][0].displayName,
                                   style: TextStyle(color: kOptionalColor),
                                 )
                               ],
@@ -77,28 +100,40 @@ class Body extends StatelessWidget {
                               child: Card(
                                 color: Theme.of(context).accentColor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: const BorderRadius.all(
+                                  borderRadius: BorderRadius.all(
                                     Radius.circular(KmodiPaddin),
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(KdefaultPaddin),
+                                  padding: EdgeInsets.all(KdefaultPaddin),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        "\$24350",
-                                        style:
-                                            TextStyle(fontSize: kHeadlineSize),
-                                      ),
+                                      snapshot.data[1] != null
+                                          ? Text(
+                                              "\$ " +
+                                                  snapshot.data[1].toString(),
+                                              style: TextStyle(
+                                                  fontSize: kHeadlineSize),
+                                            )
+                                          : Text(
+                                              "no data",
+                                              style: TextStyle(
+                                                  fontSize: kHeadlineSize),
+                                            ),
                                       OutlineButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(
                                                 KmodiPaddin * 3)),
                                         borderSide:
                                             BorderSide(color: kOptionalColor),
-                                        onPressed: () => {},
+                                        onPressed: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddNewCost()),
+                                        ),
                                         child: Text(
                                           'Update',
                                         ),
@@ -119,13 +154,13 @@ class Body extends StatelessWidget {
                       "Email",
                     ),
                     Text(
-                      snapshot.data[0].email,
+                      snapshot.data[0][0].email,
                       style: TextStyle(fontSize: kTitleSize),
                     ),
                     SizedBox(
                       height: KmodiPaddin,
                     ),
-                    SizedBox(
+                    /*  SizedBox(
                       width: double.infinity,
                       child: FlatButton.icon(
                         color: Theme.of(context).accentColor,
@@ -137,7 +172,7 @@ class Body extends StatelessWidget {
                         ),
                         onPressed: () => null,
                       ),
-                    ),
+                    ),*/
                     SizedBox(
                       width: double.infinity,
                       child: FlatButton.icon(

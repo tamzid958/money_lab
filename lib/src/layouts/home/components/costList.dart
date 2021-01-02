@@ -22,9 +22,8 @@ class _CostListState extends State<CostList> {
             widget.costList.posMin == true
                 ? Icons.add_circle_outline_rounded
                 : Icons.remove_circle_outline,
-            color: widget.costList.posMin == true
-                ? kGreenLightColor
-                : kRedLightColor,
+            color:
+                widget.costList.posMin == true ? kGreenLightColor : kRedColor,
           ),
           title: Text(
             widget.costList.title,

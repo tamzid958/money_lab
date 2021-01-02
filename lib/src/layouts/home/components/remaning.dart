@@ -62,7 +62,7 @@ class _RemaningBudgetState extends State<RemaningBudget> {
                       Row(
                         children: [
                           Text(
-                            "Not Enough Data",
+                            "not enough data",
                             style: TextStyle(fontSize: kTextSize),
                           ),
                         ],
@@ -116,7 +116,7 @@ class _RemaningBudgetState extends State<RemaningBudget> {
                             Text(
                               "\$ " + snapshot.data[0]["money"].toString(),
                               style: TextStyle(
-                                color: kRedLightColor,
+                                color: kRedColor,
                                 fontSize: kTitleSize,
                               ),
                             ),
@@ -154,7 +154,7 @@ class _RemaningBudgetState extends State<RemaningBudget> {
                         Row(
                           children: [
                             Text(
-                              "Not Enough Data",
+                              "not enough data",
                               style: TextStyle(fontSize: kTextSize),
                             ),
                           ],

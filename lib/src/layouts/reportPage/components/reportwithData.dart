@@ -18,7 +18,7 @@ class ReportWithData extends StatelessWidget {
       future: Future.wait([allSum, lastEleven]),
       builder: (context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
-          return Text("Not Enough Data");
+          return Text("not enough data");
         } else {
           try {
             return Column(
@@ -40,7 +40,7 @@ class ReportWithData extends StatelessWidget {
                             "\$ " + snapshot.data[0][0]["money"].toString() ??
                                 "0.0",
                             style: TextStyle(
-                                color: kRedLightColor, fontSize: kHeadlineSize),
+                                color: kRedColor, fontSize: kHeadlineSize),
                           ),
                           Padding(
                             padding: EdgeInsets.all(KdefaultPaddin),
@@ -53,7 +53,7 @@ class ReportWithData extends StatelessWidget {
                                     pointSize: KmodiPaddin,
                                   )
                                 : Center(
-                                    child: Text("Not Enough Data"),
+                                    child: Text("not enough data"),
                                   ),
                           ),
                         ],
@@ -111,7 +111,7 @@ class ReportWithData extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.fireplace_rounded,
-                                color: kRedLightColor,
+                                color: kRedColor,
                               ),
                               SizedBox(
                                 height: 30,
@@ -141,7 +141,7 @@ class ReportWithData extends StatelessWidget {
               ],
             );
           } catch (e) {
-            return Text("Not Enough Data");
+            return Text("not enough data");
           }
         }
       },

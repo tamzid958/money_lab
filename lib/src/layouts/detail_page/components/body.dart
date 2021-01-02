@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
 import 'package:money_lab/src/layouts/detail_page/components/tranPage.dart';
 import 'package:money_lab/src/models/costLists.new.dart';
-import 'package:money_lab/src/services/search.dart';
 
 class Body extends StatelessWidget {
   final CostLists costList;
@@ -22,7 +21,6 @@ class Body extends StatelessWidget {
                   "Transaction",
                   style: TextStyle(fontSize: kHeadlineSize),
                 ),
-                MySwitch(),
               ],
             ),
           ),

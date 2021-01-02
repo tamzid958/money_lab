@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance),
-                label: 'Budget',
+                label: 'Currency',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),

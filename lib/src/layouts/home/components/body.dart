@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_lab/constants.dart';
+import 'package:money_lab/src/services/searcher.dart';
 import 'myCostLists.dart';
-import '../../../services/search.dart';
 import 'remaning.dart';
 
 class Body extends StatelessWidget {
@@ -19,10 +19,12 @@ class Body extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Stat",
-                    style: TextStyle(
-                        fontSize: kHeadlineSize, fontWeight: FontWeight.bold)),
-                MySwitch(),
+                Text(
+                  "Stat",
+                  style: TextStyle(
+                      fontSize: kHeadlineSize, fontWeight: FontWeight.bold),
+                ),
+                Searcher()
               ],
             ),
             Column(

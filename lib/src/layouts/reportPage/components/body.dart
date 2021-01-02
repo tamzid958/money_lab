@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:money_lab/constants.dart';
-import 'package:money_lab/src/models/budgetLists.dart';
+import 'package:money_lab/src/services/searcher.dart';
 
-import 'package:money_lab/src/services/search.dart';
 import 'package:money_lab/src/services/service_costLists.dart';
-
 import 'reportwithData.dart';
 
 class Body extends StatefulWidget {
-  final BudgetLists budgetLists;
-  const Body({Key key, onSignedOut, this.budgetLists}) : super(key: key);
+  const Body({Key key, onSignedOut}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
@@ -53,7 +49,7 @@ class _BodyState extends State<Body> {
                     style: TextStyle(
                         fontSize: kHeadlineSize, fontWeight: FontWeight.bold),
                   ),
-                  MySwitch(),
+                  Searcher(),
                 ],
               ),
               ReportWithData(allSum: allSum, lastEleven: lastEleven),

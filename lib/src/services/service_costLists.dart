@@ -16,6 +16,19 @@ class ServiceCostList {
     return costlists;
   }
 
+  static Future<List<CostLists>> getSearchCosts(searchTitle) async {
+    final sql =
+        '''SELECT * FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.title} LIKE '$searchTitle%' ''';
+    final data = await db.rawQuery(sql);
+    List<CostLists> costlists = List();
+
+    for (final node in data) {
+      final costlist = CostLists.fromJSON(node);
+      costlists.add(costlist);
+    }
+    return costlists;
+  }
+
   static Future<CostLists> getCost(int id) async {
     final sql =
         '''SELECT * FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.id} == $id''';
@@ -89,7 +102,7 @@ class ServiceCostList {
   static Future<List<Map<String, dynamic>>> getAllSumCost() async {
     var date = DateTime.now().toString();
     date = DateFormater.convertDateTimeDisplay(date);
-    date = date.substring(3);
+    date = date.substring(6);
     final sql =
         ''' SELECT ${DatabaseCreator.posMin}, SUM(${DatabaseCreator.money}), 
     SUM(${DatabaseCreator.money}) AS money FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.time} LIKE '%$date'
@@ -104,7 +117,7 @@ class ServiceCostList {
   static Future<List<double>> getLastElevenCost() async {
     var date = DateTime.now().toString();
     date = DateFormater.convertDateTimeDisplay(date);
-    date = date.substring(3);
+    date = date.substring(6);
 
     final sql =
         ''' SELECT ${DatabaseCreator.money} FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.posMin} = 0 AND ${DatabaseCreator.time} LIKE '%$date' ORDER BY ${DatabaseCreator.id} DESC LIMIT 11''';
@@ -120,5 +133,22 @@ class ServiceCostList {
     }
 
     return moneyArr;
+  }
+
+  static Future<double> getProfileRemain() async {
+    final incomeSql =
+        ''' SELECT ${DatabaseCreator.money} FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.posMin} = 1''';
+    final incomedata = await db.rawQuery(incomeSql);
+
+    final expendSql =
+        ''' SELECT ${DatabaseCreator.money} FROM ${DatabaseCreator.costListTable} WHERE ${DatabaseCreator.posMin} = 0''';
+    final expenddata = await db.rawQuery(expendSql);
+
+    if (incomedata.length == 0 || expenddata.length == 0) {
+      return null;
+    }
+
+    double remaining = incomedata[0]["money"] - expenddata[0]["money"];
+    return remaining;
   }
 }

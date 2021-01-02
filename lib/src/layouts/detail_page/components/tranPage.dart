@@ -184,7 +184,7 @@ class _TransSceenState extends State<TransSceen> {
             SizedBox(
               height: 20,
             ),
-            costList.notes != null
+            costList.notes.length != 0
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -210,7 +210,7 @@ class _TransSceenState extends State<TransSceen> {
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            (costList.notes ?? "No Note Available"),
+                            (costList.notes ?? "no note available"),
                             textAlign: TextAlign.justify,
                             style: TextStyle(fontSize: kTextSize),
                           ),
@@ -220,7 +220,7 @@ class _TransSceenState extends State<TransSceen> {
                   )
                 : Align(
                     alignment: Alignment.center,
-                    child: Text("No Description Available"),
+                    child: Text("no note available"),
                   ),
             SizedBox(
               height: 20,
@@ -228,7 +228,7 @@ class _TransSceenState extends State<TransSceen> {
             SizedBox(
               width: double.infinity,
               child: RaisedButton.icon(
-                color: kRedLightColor,
+                color: kRedColor,
                 onPressed: () => deleteCost(context),
                 icon: Icon(Icons.delete),
                 label: Text("Delete"),

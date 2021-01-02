@@ -44,7 +44,7 @@ class _FormScreenState extends State<FormScreen> {
           costList.id,
           _titleController.text,
           costList.time,
-          double.parse(_amountController.text),
+          double.parse(_amountController.text.replaceAll(',', '')),
           costList.posMin,
           _noteController.text);
       await ServiceCostList.updateCost(ucostList);

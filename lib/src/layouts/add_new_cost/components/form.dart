@@ -45,7 +45,7 @@ class _FormScreenState extends State<FormScreen> {
           null,
           _titleController.text,
           DateFormater.convertDateTimeDisplay(costDate.toString()),
-          double.parse(_amountController.text),
+          double.parse(_amountController.text.replaceAll(',', '')),
           visibilityIncome,
           _noteController.text);
       await ServiceCostList.addCost(costlist);
