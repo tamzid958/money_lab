@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "78372939322-3m1a0eb6mr9ppvoltk0s6q5gh7o93k02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xilo.money_lab",
+            "certificate_hash": "571b634159f4391aad13503c0c26cf32de904b5b"
+          }
+        },
+        {
+          "client_id": "78372939322-fkva8s4sahpns5fpk6onuc7gstu4m9u6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xilo.money_lab",
+            "certificate_hash": "4ff6777f750862d0a32b5479001d9cd1b34e2790"
+          }
+        },
+        {
           "client_id": "78372939322-tpqo42cdo63o9jj2btlh4bva08ageq3f.apps.googleusercontent.com",
           "client_type": 3
         }

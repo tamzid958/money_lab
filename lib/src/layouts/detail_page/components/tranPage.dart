@@ -54,7 +54,7 @@ class _TransSceenState extends State<TransSceen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
+              height: MediaQuery.of(context).size.height / 3.5,
               child: Card(
                 color: kOptionalColor,
                 shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class _TransSceenState extends State<TransSceen> {
                             TextStyle(color: kBlackColor, fontSize: kTitleSize),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: MediaQuery.of(context).size.height /12,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +131,7 @@ class _TransSceenState extends State<TransSceen> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 7,
+              height: MediaQuery.of(context).size.height / 6,
               child: Card(
                 color: kOptionalColor,
                 shape: RoundedRectangleBorder(
